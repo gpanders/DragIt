@@ -1,0 +1,24 @@
+{
+   "name": "DragIt!",
+   "version": "1.0",
+   "manifest_version": 2,
+
+   "description": "Drag & drop link or selected text to open in new tab or search with text - right opens focused tab, left opens unfocused tab.",
+   "icons": {
+      "128": "icon128.png",
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png"
+   },
+
+   "background": {
+      "scripts": ["background.js"]
+   },
+   "content_scripts": [ {
+      "js": [ "dragit.js" ],
+      "matches": [ "http://*/*", "https://*/*", "ftp://*/*" ],
+      "permissions": [ "tabs" ],
+      "run_at": "document_start"
+   } ],
+   "permissions": [ "tabs" ]
+}
