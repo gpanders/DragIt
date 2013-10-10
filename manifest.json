@@ -1,6 +1,6 @@
 {
    "name": "DragIt!",
-   "version": "1.0",
+   "version": "1.1",
    "manifest_version": 2,
 
    "description": "Drag & drop link or selected text to open in new tab or search with text - right opens focused tab, left opens unfocused tab.",
@@ -14,6 +14,7 @@
    "background": {
       "scripts": ["background.js"]
    },
+   "options_page": "options.html",
    "content_scripts": [ {
       "js": [ "dragit.js" ],
       "matches": [ "http://*/*", "https://*/*", "ftp://*/*" ],
