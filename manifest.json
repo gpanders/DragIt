@@ -18,8 +18,14 @@
    "content_scripts": [ {
       "js": [ "dragit.js" ],
       "matches": [ "http://*/*", "https://*/*", "ftp://*/*" ],
-      "permissions": [ "tabs" ],
+      "permissions": [
+         "tabs",
+         "storage"
+      ],
       "run_at": "document_start"
    } ],
-   "permissions": [ "tabs" ]
+   "permissions": [
+      "tabs",
+      "storage"
+   ]
 }

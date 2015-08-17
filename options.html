@@ -1,38 +1,109 @@
+<!DOCTYPE html>
 <html>
 <head>
-<title>DragIt! Search Settings</title>
-<style>
-div.box
-{
-width:400px;
-padding:10px;
-border:5px solid gray;
-margin:0px;
-}
-</style>
-</head>
-<script src="options.js"></script>
+    <title>DragIt! Search Settings</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', 'Lucida Grande', sans-serif;
+            padding: 6px 20px;
+        }
+        section {
+            padding-left: 18px;
+            margin-bottom: 24px;
+            margin-top: 8px;
+        }
+        h1, h3 {
+            line-height: 1;
+            font-weight: normal;
+        }
+        h1 {
+            font-size: 1.5em;
+        }
+        h3 {
+            font-size: 1.2em;
+            margin-bottom: 0.8em;
+        }
+        section > h3 {
+            margin-left: -18px;
+        }
+        header > h1:after {
+            background-color: #eee;
+            content: '';
+            display: block;
+            height: 1px;
+            position: relative;
+            top: 13px;
+        }
+        label {
+            display: block;
+            margin-bottom: 1em;
+        }
+        input, button {
+            font-size: 12px;
 
+        }
+        input + button {
+            margin-left: 8px;
+        }
+        button {
+            min-height: 2em;
+            min-width: 4em;
+            appearance: none;
+            -webkit-appearance: none;
+            -webkit-user-select: none;
+            background-image: -webkit-linear-gradient(#ededed, #ededed 38%, #dedede);
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            border-radius: 2px;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08), inset 0 1px 2px rgba(255, 255, 255, 0.75);
+            color: #444;
+            margin: 0 1px 0 0;
+            outline: none;
+            text-shadow: 0 1px 0 rgb(240, 240, 240);
+        }
+        button:active {
+            background-image: -webkit-linear-gradient(#e7e7e7, #e7e7e7 38%, #d7d7d7);
+            box-shadow: none;
+            text-shadow: none;
+        }
+        .hidden {
+            display: none;
+        }
+        .settings {
+            margin-top: 26px;
+        }
+    </style>
+</head>
 <body>
-<div class="box">
-Search Engine URL:
-<input id="search_engine" value="" size=50></input>%s
-<br>
-<small><strong>Format must allow search terms (%s) to be added to the end URL</strong></small>
-<br>
-<div id="status"><br></div>
-<button id="save">Save</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button id="reset">Reset</button>
-</div>
-<br><br>
-<strong>Lookup Search Engine URLs on the <a href="http://mycroft.mozdev.org/">Mycroft Project</a></strong><br>
-<br>
-<small>Example:
-<br>
-Mycroft Project lists Google US as: http://www.google.com/search?q=<strong>%s</strong>
-<br>
-The search terms (denoted by %s) are added at the end of the URL.
-<br>
-For this extension, remove %s and insert as Search Engine URL: <strong>http://www.google.com/search?q=</strong>
-</small>
+    <header>
+        <h1>DragIt! Settings</h1>
+    </header>
+    <div class="settings">
+        <section>
+            <h3>Search Engine</h3>
+            <label>
+                <input id="search-engine" placeholder="http://www.google.com/search?q=" size="50" />%s
+                <button id="save-search-engine">Save</button>
+                <span id="status" class="hidden">Search engine saved</span>
+            </label>
+            <small>
+                <strong>Lookup Search Engine URLs on the <a href="http://mycroft.mozdev.org/">Mycroft Project</a></strong>
+                <div>
+                    <p>Example:</p>
+                    <p>Mycroft Project lists Google US as: http://www.google.com/search?q=<strong>%s</strong></p>
+                    <p>The search terms (denoted by %s) are added at the end of the URL.</p>
+                    <p>For this extension, remove %s and insert as Search Engine URL: <strong>http://www.google.com/search?q=</strong></p>
+                </div>
+            </small>
+        </section>
+        <section>
+            <h3>Disable on text areas</h3>
+            <div>
+                <label>
+                    <input type="checkbox" id="ignore-input" /> When dropped on text areas (i.e. input fields), do not open a new tab but paste the text into the text area
+                </label>
+            </div>
+        </section>
+    </div>
+    <script src="options.js"></script>
 </body>
 </html>

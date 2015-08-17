@@ -1,34 +1,74 @@
-// Saves options to localStorage.
-function save_options() {
-  var search_engine = document.getElementById("search_engine").value;
-  localStorage["search_engine"] = search_engine;
-  confirm_save()
+var defaults = {
+    searchEngine: 'http://www.google.com/search?&q=',
+    ignoreInput: true
 }
 
-function reset_options() {
-  localStorage["search_engine"] = "http://www.google.com/search?&q=";
-  var search_engine = localStorage["search_engine"];
-  document.getElementById("search_engine").value = search_engine;
-  confirm_save()
+function fadeOut(elem, time) {
+    if (elem.style.opacity === '') elem.style.opacity = '1';
+    var f = function() {
+        if (elem.style.opacity <= 0) {
+            elem.className += 'hidden';
+            elem.style.opacity = '1';
+            return;
+        }
+        elem.style.opacity -= 0.01;
+        setTimeout(f, time / 100);
+    };
+    f();
+}
+
+function updateDOM(opts) {
+    document.getElementById('search-engine').value = opts.searchEngine;
+    document.getElementById('ignore-input').checked = opts.ignoreInput;
+}
+
+function saveSearchEngine() {
+    var searchEngine = document.getElementById('search-engine').value;
+    chrome.storage.sync.set({
+        searchEngine: searchEngine
+    }, function() {
+        var status = document.getElementById('status');
+        status.className = '';
+        setTimeout(function() {
+            fadeOut(status, 750);
+        }, 1500);
+    });
+}
+
+function saveIgnoreInput() {
+    var ignoreInput = document.getElementById('ignore-input').checked;
+    chrome.storage.sync.set({
+        ignoreInput: ignoreInput
+    });
+}
+
+function resetOptions() {
+    var opts = {
+        searchEngine: defaults.searchEngine,
+        ignoreInput: defaults.ignoreInput
+    };
+    updateDOM(opts);
+    chrome.storage.sync.set(opts, confirmSave);
 }
 
 // Update status to let user know options were saved.
-function confirm_save() {
-  var status = document.getElementById("status");
-  status.innerHTML = "Search Engine Saved";
-  setTimeout(function() {
-    status.innerHTML = "<br>";
-  }, 1500);
+function confirmSave() {
+    var status = document.getElementById('status');
+    status.innerHTML = "Search Engine Saved";
+    setTimeout(function() {
+        status.innerHTML = "<br />";
+    }, 1500);
 }
 
 // Restores select box state to saved value from localStorage.
-function restore_options() {
-  var search_engine = localStorage["search_engine"];
-  if (!search_engine) {
-    reset_options();
-  }
-  document.getElementById("search_engine").value = search_engine;
-  document.getElementById("save").addEventListener('click', save_options);
-  document.getElementById("reset").addEventListener('click', reset_options);
+function restoreOptions() {
+    chrome.storage.sync.get({
+        searchEngine: defaults.searchEngine,
+        ignoreInput: defaults.ignoreInput
+    }, updateDOM);
 }
-document.addEventListener('DOMContentLoaded', restore_options);
+
+document.getElementById('save-search-engine').addEventListener('click', saveSearchEngine);
+document.getElementById('ignore-input').addEventListener('change', saveIgnoreInput);
+
+document.addEventListener('DOMContentLoaded', restoreOptions);
