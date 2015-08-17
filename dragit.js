@@ -29,6 +29,7 @@ document.addEventListener('drop', function (e) {
 
     var x_dir = (e.screenX < start_x) ? -1 : 1;
 	var data = e.dataTransfer.getData('URL') || e.dataTransfer.getData('Text');
+
 	if (data) {
 		chrome.extension.connect().postMessage({
 			message: 'tab', values: data, x_dir: x_dir
