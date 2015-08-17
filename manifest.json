@@ -3,7 +3,7 @@
    "version": "1.2",
    "manifest_version": 2,
 
-   "description": "Drag and drop links to open in a new tab or selected text to search in new tab. Dragging to the right opens in a new, focused tab. Dragging to the left opens in a new, unfocused tab.",
+   "description": "Drag & drop links or selected text to open/search in new tab. Drag right for a new, focused tab. Drag left for a new, unfocused tab.",
    "icons": {
       "128": "icon128.png",
       "16": "icon16.png",
