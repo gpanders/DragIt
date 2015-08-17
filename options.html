@@ -1,0 +1,38 @@
+<html>
+<head>
+<title>DragIt! Search Settings</title>
+<style>
+div.box
+{
+width:400px;
+padding:10px;
+border:5px solid gray;
+margin:0px;
+}
+</style>
+</head>
+<script src="options.js"></script>
+
+<body>
+<div class="box">
+Search Engine URL:
+<input id="search_engine" value="" size=50></input>%s
+<br>
+<small><strong>Format must allow search terms (%s) to be added to the end URL</strong></small>
+<br>
+<div id="status"><br></div>
+<button id="save">Save</button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<button id="reset">Reset</button>
+</div>
+<br><br>
+<strong>Lookup Search Engine URLs on the <a href="http://mycroft.mozdev.org/">Mycroft Project</a></strong><br>
+<br>
+<small>Example:
+<br>
+Mycroft Project lists Google US as: http://www.google.com/search?q=<strong>%s</strong>
+<br>
+The search terms (denoted by %s) are added at the end of the URL.
+<br>
+For this extension, remove %s and insert as Search Engine URL: <strong>http://www.google.com/search?q=</strong>
+</small>
+</body>
+</html>
