@@ -1,12 +1,10 @@
-var version = "1.1"
+var version = "1.2"
 
 if (localStorage.firstrun == undefined) {
-	chrome.tabs.create({url: "http://nyxbox.com/dragit"})
 	localStorage.firstrun = 0;
 	localStorage.version = version;
 }
 if (localStorage.version !== version) {
-	chrome.tabs.create({url: "http://nyxbox.com/dragit"})
 	localStorage.version = version;
 }
 

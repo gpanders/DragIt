@@ -1,6 +1,6 @@
 {
    "name": "DragIt!",
-   "version": "1.1",
+   "version": "1.2",
    "manifest_version": 2,
 
    "description": "Drag & drop link or selected text to open in new tab or search with text - right opens focused tab, left opens unfocused tab.",
